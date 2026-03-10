@@ -68,17 +68,14 @@ const FeedTab = () => {
   );
 
   const getImageURL = (feedImageURL) => {
-    if (!feedImageURL || !feedImageURL.data) {
-      console.error("Invalid feedImageURL structure:", feedImageURL);
-      return ""; // Return an empty string or a default image path
+    if (!feedImageURL) return "";
+    // Plain string URL (e.g. "https://..." or stored as a URL string)
+    if (typeof feedImageURL === "string") return feedImageURL;
+    // Base64 object from file upload: { data: "data:image/..." }
+    if (feedImageURL.data && typeof feedImageURL.data === "string") {
+      return feedImageURL.data.startsWith("data:image") ? feedImageURL.data : "";
     }
-
-    if (typeof feedImageURL.data !== "string") {
-      console.error("feedImageURL.data is not a string:", feedImageURL.data);
-      return ""; // Return a default value to prevent crashes
-    }
-
-    return feedImageURL.data.startsWith("data:image") ? feedImageURL.data : ``;
+    return "";
   };
 
   return (
@@ -94,33 +91,58 @@ const FeedTab = () => {
 
         <div className="feed-items">
           {(globalExpanded ? currentFeeds : currentFeeds.slice(0, 3)).map(
-            (feed, id) => (
-              <motion.div
-                key={feed._id.$oid}
-                className="feed-item glass"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5 + 0.5 * id, type: "ease" }}
-              >
-                {feed.feedImageURL && (
-                  <div
-                    className="feed-item-image"
-                    style={{
-                      backgroundImage: `url(${getImageURL(feed.feedImageURL)})`,
-                    }}
-                  />
-                )}
-                <div className="feed-item-container">
-                  <h2 className="feed-item-title">
-                    {/* Like Button positioned at the top-right corner */}
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "10px",
-                        right: "10px",
-                        zIndex: 100,
-                      }}
-                    >
+            (feed, id) => {
+              const imgURL = getImageURL(feed.feedImageURL);
+              const categories = Array.isArray(feed.feedCategory)
+                ? feed.feedCategory
+                : feed.feedCategory
+                ? [feed.feedCategory]
+                : [];
+              const isExpanded = expandedFeeds[feed._id];
+              const contentText = Array.isArray(feed.feedContent)
+                ? feed.feedContent.join(" ")
+                : feed.feedContent || "";
+              const links = Array.isArray(feed.feedLinks)
+                ? feed.feedLinks
+                : feed.feedLinks
+                ? [feed.feedLinks]
+                : [];
+
+              return (
+                <motion.div
+                  key={feed._id.$oid}
+                  className="feed-item glass"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 + 0.15 * id, type: "spring", stiffness: 80, damping: 18 }}
+                >
+                  {/* Cover Image */}
+                  <div className="feed-item-cover">
+                    {imgURL ? (
+                      <img
+                        src={imgURL}
+                        alt={feed.feedTitle}
+                        className="feed-cover-img"
+                      />
+                    ) : (
+                      <div className="feed-cover-placeholder" />
+                    )}
+                    <div className="feed-cover-overlay" />
+                    {categories.length > 0 && (
+                      <div className="feed-item-categories">
+                        {categories.map((cat, idx) => (
+                          <span key={idx} className="feed-category">
+                            {cat}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Card Body */}
+                  <div className="feed-item-container">
+                    {/* Like Button */}
+                    <div className="feed-like-wrapper">
                       <LikeButton
                         type="Feed"
                         title={feed.feedTitle}
@@ -135,112 +157,84 @@ const FeedTab = () => {
                         }
                       />
                     </div>
-                    {feed.feedLinks && feed.feedLinks.length > 0 ? (
-                      <div className="feed-link">
-                        {feed.feedLinks.map((link, idx) => (
-                          <div className="feed-title">
-                            {feed.feedTitle}
 
-                            <motion.a
-                              key={idx}
-                              href={link}
-                              target="_blank"
-                              className="feed-link-btn"
-                              rel="noopener noreferrer"
-                              initial={{ opacity: 0, scale: 0 }}
-                              drag
-                              dragConstraints={{
-                                left: 0,
-                                right: 0,
-                                top: 0,
-                                bottom: 0,
-                              }}
-                              dragElastic={0.3}
-                              dragTransition={{
-                                bounceStiffness: 250,
-                                bounceDamping: 15,
-                              }}
-                              whileInView={{ opacity: 1, scale: 1 }}
-                              whileHover={{ scale: 1.1 }}
-                              whileTap={{ scale: 0.9 }}
-                              transition={{ delay: 0, type: "spring" }}
-                            >
-                              <animated.img
-                                src={require("../../assets/img/icons/links.png")}
-                                alt="Links"
-                                className="feed-icon-img"
-                                draggable="false"
-                                loading="eager"
-                              />
-                            </motion.a>
-                          </div>
+                    {/* Title */}
+                    <h2 className="feed-item-title">{feed.feedTitle}</h2>
+
+                    {/* Content */}
+                    <div className="feed-item-content">
+                      {!isExpanded ? (
+                        <>
+                          {contentText.length > PREVIEW_LIMIT ? (
+                            <>
+                              {contentText.slice(0, PREVIEW_LIMIT)}...{" "}
+                              <button
+                                className="read-more-btn"
+                                onClick={() => toggleReadMore(feed._id)}
+                              >
+                                Read More ▼
+                              </button>
+                            </>
+                          ) : (
+                            contentText
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          {contentText}{" "}
+                          <button
+                            className="read-more-btn"
+                            onClick={() => toggleReadMore(feed._id)}
+                          >
+                            Show Less ▲
+                          </button>
+                        </>
+                      )}
+                    </div>
+
+                    {/* Footer */}
+                    <div className="feed-item-footer">
+                      <div className="feed-footer-left">
+                        {links.map((link, idx) => (
+                          <motion.a
+                            key={idx}
+                            href={link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="feed-visit-btn"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            Visit Link
+                            <animated.img
+                              src={require("../../assets/img/icons/links.png")}
+                              alt="link"
+                              className="feed-visit-icon"
+                              draggable="false"
+                              loading="eager"
+                            />
+                          </motion.a>
                         ))}
                       </div>
-                    ) : (
-                      <div className="feed-link">{feed.feedTitle}</div>
-                    )}
-                  </h2>
-
-                  {feed.feedCategory && feed.feedCategory.length > 0 && (
-                    <div className="feed-item-categories">
-                        {(Array.isArray(feed.feedCategory)
-                          ? feed.feedCategory
-                          : [feed.feedCategory]
-                        ).map((cat, idx) => (
-                        <span key={idx} className="feed-category">
-                          {cat}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  <div className="feed-item-content project-window-tagline">
-                    {!expandedFeeds[feed._id] ? (
-                      <>
-                        {feed.feedContent.join(" ").length > PREVIEW_LIMIT ? (
-                          <>
-                            {feed.feedContent.join(" ").slice(0, PREVIEW_LIMIT)}
-                            ...
-                            <button
-                              className="read-more-btn"
-                              onClick={() => toggleReadMore(feed._id)}
-                            >
-                              Read More ▼
-                            </button>
-                          </>
-                        ) : (
-                          feed.feedContent.join(" ")
+                      <div className="feed-footer-right">
+                        {feed.likesCount > 0 && (
+                          <span className="feed-likes">
+                            ♥ {feed.likesCount}
+                          </span>
                         )}
-                      </>
-                    ) : (
-                      feed.feedContent.join(" ")
-                    )}
-                  </div>
-                  {feed.likesCount > 0 && (
-                    <div
-                      style={{
-                        // position: "absolute",
-                        // bottom: "27.5px",
-                        // right: "10px",
-                        marginTop: "5px",
-                        width: "100%",
-                        textAlign: "left",
-                        color: "#edeeef",
-                        fontSize: "0.8em",
-                        zIndex: 150,
-                      }}
-                    >
-                      Likes: {feed.likesCount}
+                        <span className="feed-timestamp">
+                          {feed.feedCreatedAt &&
+                            new Date(feed.feedCreatedAt).toLocaleDateString(
+                              "en-US",
+                              { year: "numeric", month: "short", day: "numeric" }
+                            )}
+                        </span>
+                      </div>
                     </div>
-                  )}
-
-                  <span className="feed-timestamp">
-                    {feed.feedCreatedAt &&
-                      new Date(feed.feedCreatedAt).toLocaleString()}
-                  </span>
-                </div>
-              </motion.div>
-            )
+                  </div>
+                </motion.div>
+              );
+            }
           )}
         </div>
 
