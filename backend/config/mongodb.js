@@ -13,11 +13,7 @@ if (!uri) {
 const primaryDbName = process.env.MONGO_DB_NAME || "SachinPortfolioDB";
 const aiDbName = process.env.MONGO_DB_NAME_AI || "SachinPortfolioDBAI";
 
-const client = new MongoClient(uri, {
-  // these driver options are no‑ops in v4+ but harmless
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const client = new MongoClient(uri);
 
 let dbPrimary, dbAI;
 let dbOpsCount = 0;
