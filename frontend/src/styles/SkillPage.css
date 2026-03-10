@@ -1,0 +1,307 @@
+.skill-bg-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  /* background-color: #212529; */
+  transform: translateZ(0);
+  will-change: transform;
+  /* filter: blur(5px); */
+}
+
+.skill-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 52px);
+  /* background-image: url("../assets/img/background/about-bg.png"); */
+  /* background: linear-gradient(145deg, #212529, #181a1d); */
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-attachment: fixed;
+  scroll-behavior: smooth;
+  background-position: center;
+  font-family: "Montserrat", sans-serif;
+  color: #edeeef;
+  text-align: center;
+  z-index: 1;
+  overflow: visible;
+}
+
+.skill-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(1140px, 95%);
+  margin: 0 auto;
+  padding: 0 0px;
+  z-index: 2;
+  min-height: calc(90vh - 52px);
+  overflow: visible;
+}
+
+.skill-box {
+  position: relative;
+  background: linear-gradient(
+    145deg,
+    rgba(33, 37, 41, 0.3),
+    rgba(24, 26, 29, 0.3)
+  );
+  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(5px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1; /* Lower than .space-explorer */
+  width: min(1140px, 100%);
+  margin: auto auto;
+  text-align: center;
+  padding: 30px 20px;
+  color: #edeeef;
+  height: 100%;
+}
+
+.skill-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  font-family: "Montserrat", sans-serif;
+  color: #edeeef;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 2rem;
+}
+
+.skill-paragraph {
+  color: #edeeef;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.8px;
+  margin: 5px;
+  line-height: 1rem;
+}
+
+.skill-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill-carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  cursor: normal !important;
+}
+
+.last-skill-row {
+  display: flex; /* Flexbox layout */
+  flex-direction: row; /* Arranges items horizontally */
+  flex-wrap: nowrap; /* Prevents wrapping */
+  justify-content: space-evenly; /* Ensures even spacing */
+  align-items: space-around;
+  gap: 1rem; /* Removes any additional gaps */
+  width: 100%; /* Full width of the container */
+}
+
+.last-skill-column {
+  flex: 0 0 50%; /* Each column takes exactly 50% of the row */
+  display: flex;
+  flex-direction: column;
+  max-width: 50%; /* Prevents any overflow */
+  box-sizing: border-box; /* Includes padding/border in the width */
+  padding: 10px; /* Adds inner spacing */
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 8px; /* Rounded corners */
+  text-align: center;
+  position: relative;
+}
+
+.skill-column {
+  border-radius: 20px;
+  background: rgba(27, 30, 34, 0.6); /* Translucent background color */
+  backdrop-filter: blur(5px); /* High blur effect */
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8),
+    -4px -4px 12px rgba(58, 65, 73, 0.5),
+    inset -2px -2px 4px rgba(58, 65, 73, 0.2),
+    inset 2px 2px 6px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateZ(10px);
+  transition: all 0.3s ease-in-out;
+}
+
+.ribbon-container {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  width: 100%;
+  position: relative;
+}
+
+.ribbon-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1px;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: capitalize;
+  color: #edeeef; /* Icon and text color */
+  white-space: nowrap;
+  padding: 2px;
+  backdrop-filter: blur(5px); /* High blur effect */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateZ(10px);
+  transition: all 0.3s ease-in-out;
+}
+
+.skill-icon {
+  height: 25px;
+  width: 25px;
+  color: #edeeef;
+}
+
+.bar-chart-container {
+  width: min(100%, 600px);
+  height: auto;
+  aspect-ratio: 16 / 9; /* Keeps a good aspect ratio for the chart */
+  /* background-color: rgba(33, 37, 41, 0.8); Slightly transparent background */
+  border-radius: 12px; /* Rounded corners */
+  margin: 10px auto; /* Center the chart */
+  padding: 10px; /* Internal padding for spacing */
+  transform: translateZ(10px);
+}
+
+.bar-chart-container:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 10px rgba(108, 188, 252, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.bar {
+  transition: fill 0.3s ease, height 0.3s ease;
+}
+
+.github-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 30px; /* Adjust as needed to position above the chart */
+  right: 20px; /* Adjust as needed for proper spacing */
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  background-color: #edeeef;
+  border-radius: 100px;
+  z-index: 10;
+}
+
+.github-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.github-icon:hover img {
+  transform: scale(1.15); /* Slight zoom-in effect on hover */
+}
+
+.skill-graph-carousel {
+  width: min(100%, 600px);
+  height: auto;
+  aspect-ratio: 16 / 9; /* Keeps a good aspect ratio for the chart */
+  background-color: transparent; /* Slightly transparent background */
+  margin: 0 auto;
+}
+
+@media (max-width: 992px) {
+  .skill-box {
+    padding: 50px 10px;
+  }
+
+  .bar-chart-container {
+    padding: 2px;
+    margin: 2px auto;
+  }
+  .skill-heading {
+    font-size: 1.5rem;
+  }
+  .skill-paragraph {
+    font-size: 1rem;
+    padding: 0;
+  }
+  .skill-icon {
+    height: 15px;
+    width: 15px;
+  }
+  .ribbon-item {
+    font-size: 14px;
+  }
+
+  .skill-div {
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .last-skill-column {
+    max-width: 50%;
+  }
+
+  .skill-column {
+    flex: 0 0 100%;
+    padding: 2px;
+    max-width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 768px) {
+  .last-skill-row {
+    flex-direction: column;
+    height: calc(45dvh - 52px);
+  }
+
+  .last-skill-column {
+    display: block;
+    flex: 1;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+  }
+
+  .bar-chart-container {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 10px rgba(108, 188, 252, 0.5);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    max-height: calc((45dvh - 52px) / 2);
+  }
+
+  .skill-graph-carousel {
+    max-height: calc((45dvh - 52px) / 2);
+  }
+}
+
+@media (max-width: 576px) {
+}
+
+@media (max-width: 350px) {
+}

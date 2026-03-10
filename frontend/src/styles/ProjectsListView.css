@@ -1,0 +1,245 @@
+/* Container for project cards: occupy full viewport height minus header/title, no separate scrolling */
+
+.project-section-title {
+  font-family: "Montserrat", "Helvetica Neue";
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #edeeef;
+  margin: 20px auto;
+  position: sticky;
+  top: 72px;
+}
+
+/* Projects list container: full width, auto-height to fit all cards */
+.project-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  /* height: calc(100dvh - 52px - <titleHeight> ); -- removed fixed height */
+  overflow: visible; /* allow content to extend naturally */
+  scrollbar-width: none; /* hide scrollbar (no overflow anyway) */
+  margin-top: 20px;
+}
+.project-container::-webkit-scrollbar {
+  display: none;
+}
+
+.hover-tooltip {
+  position: absolute;
+  top: -30px; /* Adjust as necessary */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Each project card: sticky positioning for stacking effect */
+.project-card {
+  max-width: 1140px;
+  /* scroll-snap-align: center;
+    scroll-snap-stop: always; */
+  display: flex;
+  position: sticky;
+  top: 0px;
+  z-index: 10;
+  flex-direction: row;
+  width: min(1140px, 95%);
+  text-align: left;
+  padding: 0 40px;
+  margin: 20px;
+  /* margin-bottom: 5px !important; */
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  transition:
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+}
+
+.project-card:nth-child(3n + 1) {
+  background: linear-gradient(
+    rgba(139, 69, 90, 0.5),
+    /* Dark Pink */ rgba(139, 69, 90, 0.5)
+  );
+  background-size: cover;
+  color: #f8f9fa; /* Light text for readability */
+}
+
+.project-card:nth-child(3n + 2) {
+  background: linear-gradient(
+    rgba(54, 79, 107, 0.5),
+    /* Dark Blue */ rgba(54, 79, 107, 0.5)
+  );
+  background-size: cover;
+  color: #f8f9fa; /* Light text for readability */
+}
+
+.project-card:nth-child(3n) {
+  background: linear-gradient(
+    rgba(97, 89, 38, 0.5),
+    /* Dark Yellow */ rgba(97, 89, 38, 0.5)
+  );
+  background-size: cover;
+  color: #f8f9fa; /* Light text for readability */
+}
+
+/* Enhance shadow on hover */
+.project-card-initial-active {
+  box-shadow: 0 0 0 3px #6366f1;
+}
+
+.project-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  /* z-index: 10000; */
+}
+
+.profile-picture-static {
+  /* inherit the container’s size/layout exactly */
+  width: 100%;
+  height: 100%;
+  /* force no extra transforms on the child */
+  transform: none !important;
+}
+
+/* .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  } */
+
+/* Project card content layout (unchanged)... */
+.project-info {
+  flex: 4; /* Take up two-thirds of the card */
+  padding: 40px 40px 40px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: #edeeef; /* Light text color for contrast */
+}
+
+.project-header {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(0.75rem, 1.1rem, 1.25vw);
+  color: #edeeef;
+}
+
+.project-title {
+  z-index: 50;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  background-size: 200% 200%;
+  color: transparent !important;
+  text-align: left;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(252, 188, 29, 1),
+    rgba(237, 238, 239, 0.95)
+  );
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.project-tagline {
+  z-index: 50;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  font-size: clamp(0.75rem, 1.1rem, 1.25vw);
+  margin: 10px 0;
+  color: #edeeef;
+  font-weight: 500;
+  text-align: justify;
+  /* let long words break with hyphens instead of huge gaps */
+  hyphens: auto;
+  /* force the last line of each paragraph back to left alignment */
+  text-align-last: left;
+}
+
+.project-image {
+  margin: 40px 0px;
+  flex: 3; /* Take up half the card */
+  background-size: contain;
+  background-repeat: no-repeat;
+  scroll-behavior: smooth;
+  background-position: center;
+  border-radius: 12px; /* Match card's border-radius */
+  aspect-ratio: 16 / 9;
+}
+
+.learn-button-motioned {
+  height: auto;
+  width: fit-content;
+  margin: 5px 0;
+}
+
+@media (max-width: 992px) {
+  .project-section-title {
+    font-size: 2rem;
+    margin: 10px auto;
+  }
+
+  .project-card {
+    width: 95%;
+    padding: 0 30px;
+  }
+
+  .project-info {
+    padding: 30px 30px 30px 0px;
+    flex: 1;
+  }
+
+  .project-image {
+    flex: 1; /* Prevent flex shrink issues */
+    margin: 30px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-card {
+    flex-direction: column-reverse;
+    max-width: 540px;
+    padding: 0 20px;
+  }
+
+  .project-info {
+    padding: 20px 0;
+    flex: 1;
+  }
+
+  .project-image {
+    flex: none; /* Prevent flex shrink issues */
+    margin: 20px 0 20px 0; /* Add space below the image */
+    width: 100%; /* Make image take full width of parent */
+    aspect-ratio: 16 / 9; /* Consistent aspect ratio */
+    height: auto; /* Fixed height to ensure visibility */
+  }
+}
+
+@media (max-width: 576px) {
+  .project-card {
+    width: 90%;
+    padding: 0 20px;
+  }
+  .project-image {
+    flex: none; /* Prevent flex shrink issues */
+    align-self: center;
+    width: 100%; /* Make image take full width of parent */
+    height: auto; /* Let height adjust dynamically */
+    aspect-ratio: 16 / 9;
+    margin: 20px 0 0;
+  }
+}

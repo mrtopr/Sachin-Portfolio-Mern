@@ -1,0 +1,170 @@
+/* Fonts defined in index.css (single source). */
+
+/* Initial Default Styling */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  user-select: none;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #212529;
+  scrollbar-width: none !important;
+}
+
+body {
+  font-weight: 400;
+  overflow-x: hidden;
+  position: relative;
+  color: #edeeef !important;
+  font-family: "Montserrat", sans-serif !important;
+}
+
+.App {
+  position: relative;
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  display: none;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  text-decoration: none !important;
+  font-family: "Source Sans Pro";
+  font-size: 1rem;
+  font-weight: 400;
+  color: white;
+  border-radius: 10%;
+  background: rgba(52, 58, 64, 0.5);
+  line-height: 45px;
+  transition: background 0.1s ease-in-out;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.scroll-to-top:hover {
+  background: rgba(52, 58, 64, 0.8);
+}
+
+.scroll-to-top.show {
+  display: inline; /* Show the button when 'show' class is applied */
+}
+
+/* Wrapper around button + tooltip */
+.ai-chat-container {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* — Tooltip box — */
+.ai-chat-tooltip {
+  margin-bottom: 8px; /* space between tooltip and button */
+  background: #edeeef; /* #212529 at 90% opacity */
+  color: #212529;
+  padding: 8px 12px;
+  border-radius: 6px 6px 0 6px;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  display: flex;
+  position: absolute;
+
+  right: 50px;
+  top: -20px;
+  align-items: center;
+}
+
+/* Tooltip close “×” */
+.ai-chat-tooltip .close-btn {
+  margin-right: 8px;
+  cursor: pointer;
+  color: #212529;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1;
+}
+.ai-chat-tooltip .close-btn:hover {
+  color: lightcoral;
+}
+
+/* — Chat-button itself — */
+.ai-chat-btn {
+  width: 50px;
+  height: 50px;
+  background-color: #edeeef;
+  color: #212529;
+  border-radius: 50%;
+  box-shadow:
+    0px 10px 20px rgba(0, 0, 0, 0.2),
+    inset 0px -4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Button hover state */
+.ai-chat-btn:hover {
+  background-color: #6366f1;
+}
+
+/* Icon inside the button */
+.ai-chat-btn .icon-img {
+  width: 50%;
+  height: 50%;
+  transition: transform 0.3s ease;
+  animation: rotate-backward 0.5s ease-in-out;
+}
+
+/* Hover-spin animation */
+.ai-chat-btn:hover .icon-img {
+  animation: rotate 0.5s ease-in-out;
+}
+
+/* Keyframes */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate-backward {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .ai-chat-container {
+    right: 10px;
+    bottom: 10px;
+  }
+  .ai-chat-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .ai-chat-tooltip {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+}

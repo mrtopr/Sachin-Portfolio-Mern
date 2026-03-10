@@ -1,0 +1,293 @@
+.project-window-tab-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100dvh); /* Default height */
+  width: min(1140px, 95%);
+  margin: 0 auto;
+  justify-content: flex-start;
+  background: #212529;
+  background-blend-mode: hard-light;
+  border-bottom: 1px solid #343a40;
+  border-radius: 12px;
+}
+
+.project-image-container {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.project-window-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+
+.project-window-content {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.project-window-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: transparent !important;
+  background: linear-gradient(
+    135deg,
+    #bfa760,
+    #d4b945,
+    #e3ca63,
+    #eedb79,
+    #bfa760
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  animation: gradientMove 3s ease-in-out infinite,
+    textShine 3s ease-in-out infinite;
+}
+
+.project-window-subtitle {
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 700;
+  background: linear-gradient(
+    135deg,
+    #9e9e9e,
+    #b8b8b8,
+    #d0d0d0,
+    #e8e8e8,
+    #9e9e9e
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  animation: gradientMove 3s ease-in-out infinite,
+    textShine 3s ease-in-out infinite;
+}
+
+.project-window-timeline {
+  text-align: right;
+  font-size: 1rem;
+  font-weight: 500;
+  background: linear-gradient(
+    135deg,
+    #9e9e9e,
+    #b8b8b8,
+    #d0d0d0,
+    #e8e8e8,
+    #9e9e9e
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  animation: gradientMove 1s ease-in-out infinite,
+    textShine 1.1s ease-in-out infinite;
+}
+
+/* Add this snippet to your ProjectTab.css (or wherever you keep your styles) */
+
+/* 1. Gives a glassy, "slate" look with a subtle background blur. */
+/* 2. On hover, a gentle glare slides across the text, creating a professional, refined appeal. */
+.project-window-tagline {
+  width: 75%;
+  margin: 20px auto;
+  position: relative;
+  padding: 1rem 1.5rem;
+  font-size: 1.2rem;
+  font-style: italic;
+  text-align: left;
+  color: #edeeef;
+  background: rgba(255, 255, 255, 0.1); /* glassy effect */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  border-radius: 30px;
+  border-bottom-left-radius: 5px;
+  cursor: default;
+  overflow: hidden; /* needed for glare effect */
+}
+
+/* On hover: gently lift and add a deeper shadow for a 3D or "glass" feel */
+.project-window-tagline:hover {
+  /* transform: scale(1.03); */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* The glare “highlight” — slides diagonally across on hover */
+.project-window-tagline::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -50%;
+  width: 200%;
+  height: 300%;
+  background: linear-gradient(
+    75deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0) 40%
+  );
+  transform: translateX(-100%) rotate(25deg);
+  pointer-events: none;
+}
+
+/* When hovered, the glare sweeps across the text to the opposite side */
+.project-window-tagline:hover::before {
+  transform: translateX(100%) rotate(25deg);
+}
+
+.project-window-urls {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: min(75%, 1140px);
+  margin: 0px auto 20px auto;
+  padding: 15px;
+  border-radius: 100px;
+  background: rgba(
+    252,
+    188,
+    29,
+    0.8
+  ); /* Stronger base color with minimal translucency */
+  backdrop-filter: blur(3px); /* Slight blur for a softer matte finish */
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6),
+    /* Subtle outer shadow */ -2px -2px 4px rgba(252, 188, 29, 0.5),
+    /* Subtle outer highlight */ inset -1px -1px 2px rgba(252, 188, 29, 0.5),
+    /* Subtle inner highlight */ inset 1px 1px 3px rgba(0, 0, 0, 0.4); /* Minimal inner shadow */
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Faint border to enhance edges */
+  transform: translateZ(6px);
+  z-index: 100;
+}
+
+.project-window-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  object-position: center;
+  object-fit: cover;
+  width: auto;
+}
+
+.project-window-paragraphs {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 1rem;
+  line-height: 1.1;
+  text-align: justify;
+  /* let long words break with hyphens instead of huge gaps */
+  hyphens: auto;
+  /* force the last line of each paragraph back to left alignment */
+  text-align-last: left;
+  color: #edeeef;
+}
+
+.project-window-paragraph {
+  margin-bottom: 1rem;
+  text-align: justify;
+  /* let long words break with hyphens instead of huge gaps */
+  hyphens: auto;
+  /* force the last line of each paragraph back to left alignment */
+  text-align-last: left;
+}
+
+/* Base styling for Swiper navigation buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #edeeef;
+  border-radius: 50%; /* Makes the button circular */
+  width: 20px; /* Adjust size */
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px; /* Icon size */
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover::after,
+.swiper-button-prev:hover::after {
+  color: #6366f1; /* Change to your preferred hover color */
+  transform: scale(1.1);
+}
+
+.swiper-button-next:active,
+.swiper-button-prev:active {
+  transform: scale(0.9); /* Shrinks the button on click */
+  transition: transform 0.1s ease; /* Smooth scale effect */
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: #edeeef;
+  font-size: 6px; /* Adjust arrow icon size */
+}
+
+@media (max-width: 768px) {
+  .project-window-images {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .project-window-content {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  .project-window-tagline {
+    margin: 16px auto;
+  }
+
+  .project-window-urls {
+    margin-bottom: 16px;
+  }
+
+  .project-window-urls,
+  .project-window-tagline {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    line-height: normal;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .project-window-title {
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
+    line-height: normal;
+  }
+
+  .project-window-subtitle {
+    font-size: clamp(1rem, 5vw, 1.5rem);
+    line-height: normal;
+  }
+
+  .project-window-timeline {
+    font-size: 1rem;
+  }
+
+  .project-window-tagline {
+    font-size: 1.2rem;
+  }
+
+  .project-window-paragraphs {
+    font-size: 0.9rem;
+    line-height: 1;
+    padding: 10px;
+  }
+
+  /* .project-window-urls {
+    flex-direction: column;
+    align-items: center;
+  } */
+}

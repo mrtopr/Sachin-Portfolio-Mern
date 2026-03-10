@@ -1,0 +1,340 @@
+.about-section-container {
+  /* cursor: none; */
+  position: relative; /* Establishes a stacking context for child elements */
+  display: flex;
+  overscroll-behavior-y: contain;
+  scroll-snap-type: y mandatory;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 52px);
+  background: transparent; /* Allow the beams to show through */
+  font-family: "Montserrat", sans-serif;
+  color: #212529;
+  background-color: #212529;
+  text-align: center;
+  z-index: 1; /* Ensures content stays above the beams */
+}
+
+.about-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(1140px, 95%);
+  margin: 0 auto;
+  padding: 0 0px;
+  z-index: 2;
+}
+
+.about-content {
+  position: absolute;
+  width: min(1140px, 95%);
+  height: auto;
+  margin: 0 auto;
+  padding: 45px 15px;
+  z-index: 3;
+}
+
+.glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  color: #212529;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.section-title {
+  font-size: clamp(
+    1.5rem,
+    3vw,
+    2.5rem
+  ); /* Scales dynamically with screen width */
+  color: #edeeef;
+  text-align: center;
+}
+
+.about-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 10px;
+  line-height: 1.5;
+}
+
+.about-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: max-content;
+  gap: 1rem;
+  margin: 10px;
+}
+.about-row:first-child {
+  flex: 1;
+}
+
+.about-row:last-child {
+  flex: 2;
+}
+
+.about-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  width: 300px;
+  height: 300px;
+  border-radius: 5%;
+  object-fit: cover;
+  filter: brightness(0.9) saturate(90%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.about-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  height: auto;
+}
+
+.about-box {
+  background-color: #edeeef;
+  height: max-content;
+  width: max-content;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem;
+  text-align: center;
+  padding: 0.5rem 0.75rem;
+}
+
+.about-icon {
+  color: #212529;
+  font-size: clamp(0.75rem, 1.75vw, 1rem); /* Scales dynamically */
+  font-weight: 500;
+}
+
+.about-title {
+  font-size: clamp(0.7rem, 1.25vw, 0.9rem);
+  font-weight: 700;
+}
+
+.about-subtitle {
+  font-size: clamp(0.625rem, 1vw, 0.8rem); /* Responsive to width */
+  font-weight: 400;
+}
+
+.about-description-box {
+  background-color: #edeeef;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem;
+  text-align: left;
+  padding: 1rem 1.25rem;
+  text-align: justify;
+  /* let long words break with hyphens instead of huge gaps */
+  hyphens: auto;
+  /* force the last line of each paragraph back to left alignment */
+  text-align-last: left;
+}
+
+.about-name {
+  font-size: clamp(1.5rem, 2vw, 2.25rem); /* Dynamically adjusts */
+  font-weight: 700;
+  text-align: left;
+}
+
+.about-role {
+  width: 100%;
+  font-size: clamp(0.675rem, 0.95vw, 1rem); /* Dynamically adjusts font size */
+  font-weight: 500;
+  font-style: bold;
+  text-align: left;
+}
+
+.about-description {
+  text-align: left;
+  font-size: clamp(0.675rem, 0.95vw, 1rem); /* Scales dynamically */
+  font-weight: 400;
+}
+
+.about-page-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem); /* Scales dynamically */
+  color: #edeeef;
+}
+
+.button-container {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 0.75rem;
+}
+
+@media (max-width: 992px) {
+  .about-div {
+    margin: auto auto;
+    padding: 25px 10px;
+  }
+
+  .about-container {
+    gap: 0.5rem;
+    margin: 5px;
+  }
+
+  .about-row {
+    margin: 5px;
+  }
+
+  .about-image {
+    width: 250px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .about-box {
+    padding: 0.25rem 0.5rem;
+  }
+
+  .about-icon {
+    font-size: clamp(0.6rem, 1.75vw, 1rem); /* Scales dynamically */
+    font-weight: 500;
+  }
+
+  .about-title {
+    font-size: clamp(0.6rem, 1.25vw, 0.9rem);
+    font-weight: 700;
+  }
+
+  .about-subtitle {
+    font-size: clamp(0.5rem, 1vw, 0.8rem); /* Responsive to width */
+    font-weight: 500;
+  }
+
+  .about-description-box {
+    padding: 0.5rem 0.475rem;
+  }
+
+  .about-name {
+    font-size: clamp(1rem, 2vw, 1.25rem); /* Adjusted for smaller screens */
+    padding: 2px;
+  }
+
+  .about-role {
+    font-size: clamp(0.5rem, 1vw, 0.8rem); /* Dynamically adjusts */
+    padding: 2px;
+  }
+
+  .about-description {
+    font-size: clamp(0.6rem, 1vw, 0.8rem); /* Adjusted for smaller screens */
+    padding: 2px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 0px;
+  }
+
+  .about-row {
+    gap: 0.75rem;
+    margin: 5px 0px;
+  }
+
+  .about-image {
+    width: 200px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .about-name {
+    font-size: clamp(1.5rem, 3vw, 2.25rem); /* Adjusted for smaller screens */
+    padding: 2px;
+  }
+
+  .about-role {
+    font-size: clamp(0.75rem, 2vw, 1.8rem); /* Dynamically adjusts */
+    padding: 2px;
+  }
+
+  .about-description {
+    font-size: clamp(0.75rem, 2vw, 1.8rem); /* Adjusted for smaller screens */
+    padding: 2px;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-div {
+    margin: auto auto;
+    padding: 7.5px 0px;
+  }
+
+  .about-container {
+    line-height: 1.25;
+  }
+
+  .about-image {
+    width: 150px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .about-box {
+    padding: 0.25rem 0.5rem;
+  }
+
+  .about-icon {
+    font-size: clamp(0.6rem, 2vw, 1.1rem); /* Scales dynamically */
+    font-weight: 500;
+  }
+
+  .about-title {
+    font-size: clamp(0.6rem, 1.5vw, 1rem);
+    font-weight: 700;
+  }
+
+  .about-subtitle {
+    font-size: clamp(0.6rem, 1.25vw, 0.9rem); /* Responsive to width */
+    font-weight: 500;
+  }
+
+  .about-description-box {
+    padding: 0.5rem 0.475rem;
+    margin: 0px 10px;
+  }
+
+  .about-name {
+    font-size: clamp(0.75rem, 4vw, 2.25rem); /* Adjusted for smaller screens */
+    padding: 2px;
+  }
+
+  .about-role {
+    font-size: clamp(0.6rem, 2vw, 2rem); /* Dynamically adjusts */
+    padding: 2px;
+  }
+
+  .about-description {
+    font-size: clamp(0.6rem, 2vw, 2rem); /* Adjusted for smaller screens */
+    padding: 2px;
+    text-align: justify;
+    /* let long words break with hyphens instead of huge gaps */
+    hyphens: auto;
+    /* force the last line of each paragraph back to left alignment */
+    text-align-last: left;
+  }
+}

@@ -1,0 +1,35 @@
+.project-page-container {
+  position: relative;
+  display: flex;
+  flex-direction: column; /* Ensure vertical stacking of child elements */
+  align-items: center;
+  justify-content: flex-start;
+  /* overflow: auto; Ensure the page scrolls */
+  /* height: auto; */
+  min-height: calc(100vh - 52px);
+  /* max-height: calc(100dvh - 52px); */
+  background: transparent;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  font-family: "Montserrat", sans-serif;
+  color: #212529;
+  text-align: center;
+  z-index: 1;
+}
+
+/* @media (max-width: 992px) {
+  .project-page-div {
+    padding: 0;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .project-page-div {
+    padding-right: 0;
+    padding-left: 0;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+} */

@@ -1,0 +1,206 @@
+.contact-page {
+  display: flex;
+  position: relative;
+  width: 100%;
+  flex-direction: column !important;
+  justify-content: center;
+  align-items: center;
+  background-color: #212529;
+  /* background-image: url("../../public/contact-bg.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; */
+  scroll-behavior: smooth;
+  min-height: calc(100vh - 52px);
+  font-family: "Montserrat", sans-serif;
+  color: #edeeef;
+  text-align: center;
+  overflow-y: hidden;
+  z-index: 1;
+}
+
+/* Glowing Light Effect */
+.mouse-glow {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 235, 59, 0.7) 0%,
+    rgba(255, 235, 59, 0.3) 50%,
+    rgba(255, 235, 59, 0) 100%
+  );
+  border-radius: 50%;
+  pointer-events: none; /* Allow mouse events to pass through */
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0; /* Keep it behind the content */
+}
+
+.contact-container {
+  display: flex;
+  z-index: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1140px;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-header {
+  font-size: 40px;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.contact-info {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: inherit;
+  user-select: text;
+  cursor: default;
+  margin-bottom: 0.5rem;
+}
+
+.lead {
+  user-select: text;
+
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+a {
+  color: #6366f1;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.form-subheading {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.contact-form-container {
+  margin-top: 3rem;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.contact-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 95%;
+  max-width: 900px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  grid-column: 1 / span 1;
+}
+
+.input-group input {
+  background-color: #f8f9fa;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #495057;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
+}
+
+.textarea-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  grid-column: 2 / span 1;
+}
+
+.textarea-group textarea {
+  background-color: #f8f9fa;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #495057;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
+  resize: none;
+  height: 100%;
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1 / -1;
+  margin: 0 auto;
+  width: fit-content !important;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #adb5bd;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: #212529 1px solid;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* @media (max-width: 992px) {
+  .contact-page {
+    min-height: 100vh;
+  }
+} */
+
+@media (max-width: 768px) {
+  .contact-form-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .contact-form {
+    grid-template-columns: 1fr 1fr;
+    width: 100%; /* Ensures the form takes up 95% of the container */
+    max-width: 600px; /* Optional: set a max width to keep it centered and smaller */
+    margin: 0 auto; /* Centers the form within the container */
+  }
+
+  .input-group,
+  .textarea-group {
+    width: 95%; /* Take up most of the form width */
+    margin: 0 auto; /* Center each group within the form */
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-form {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .input-group,
+  .textarea-group {
+    grid-column: 1 / -1;
+    width: 95%;
+    margin: 0 auto; /* Center each group within the container */
+  }
+}

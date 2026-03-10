@@ -1,0 +1,288 @@
+.window-modal {
+  display: inline-block;
+  position: fixed;
+  top: 52px;
+  left: 0;
+  width: calc(100%);
+  height: calc(100dvh - 52px);
+  margin: 0 auto;
+  background-color: #212529;
+  border-radius: 10px;
+  border: 1px solid #343a40;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  overflow: hidden;
+  resize: both;
+}
+
+.window-content {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 100%;
+}
+
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #212529;
+  border-top: 1px solid #343a40;
+  background-blend-mode: hard-light;
+}
+
+.header-text {
+  font-size: 0.8rem;
+  color: transparent; /* Hide the default text color */
+  background: linear-gradient(
+    to bottom,
+    #edeeef,
+    /* Lightest shade */ #dcdfe0,
+    /* Slightly darker */ #c9cccd /* Even darker, but not too dark */
+  );
+  -webkit-background-clip: text; /* Clip the gradient to the text for WebKit browsers */
+  background-clip: text; /* Standard background clip */
+  opacity: 0.85; /* Slightly more opaque */
+}
+
+.title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #212529;
+  background-blend-mode: hard-light;
+  border-bottom: 1px solid #343a40;
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding: 2px 10px 0px 10px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.tab {
+  position: relative;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  background-color: #212529;
+  background-blend-mode: hard-light;
+  color: #f8f9fa;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    border-radius 0.3s ease;
+  flex: 1 1 80%; /* Allow the tab to grow and shrink */
+  max-width: calc(
+    100% / 2
+  ); /* Each tab takes up 50% width if there are 2 or fewer */
+  min-width: 120px; /* Ensure the tab doesn't get too narrow */
+}
+
+.tab:hover {
+  background-color: rgba(52, 58, 64, 0.5);
+  background-blend-mode: soft-light;
+  box-shadow: 10px -200px 400px #343434;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.tab:hover .close-tab {
+  color: lightcoral;
+}
+
+.tab.active {
+  background-color: #343a40;
+  background-blend-mode: hard-light;
+  box-shadow: 10px -200px 400px #343434;
+  border: 2px solid #343a40;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #edeeef;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.tab-title {
+  overflow: hidden;
+  font-size: small;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 95%;
+}
+
+.close-tab {
+  width: 5%;
+  text-align: center;
+  font-size: small;
+  color: #edeeef;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.close-tab:hover {
+  display: flex;
+  opacity: 1;
+  justify-content: center;
+  align-items: center;
+  color: #ff0000;
+  background-blend-mode: soft-light;
+  cursor: pointer;
+}
+
+.controls {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.control-btn {
+  background-color: #212529;
+  border: none;
+  color: #edeeef;
+  font-size: small;
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.minimize:hover {
+  background-color: rgba(
+    252,
+    188,
+    29,
+    0.5
+  ); /* Set background color with opacity */
+}
+
+.close {
+  background-color: rgba(255, 0, 0, 0.5) !important;
+}
+
+.close:hover {
+  background-color: rgba(255, 0, 0, 1) !important;
+}
+
+.content {
+  flex: 1;
+  background-color: #212529;
+  background-blend-mode: hard-light;
+  overflow: auto;
+  border: 1px solid #343a40;
+  border-radius: 5px;
+  scrollbar-width: auto;
+  scrollbar-color: #6366f1 #212529;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: #6366f1;
+  border-radius: 5px;
+}
+
+.minimized-icon {
+  position: fixed;
+  top: 65px !important;
+  right: 15px !important;
+  width: 50px !important;
+  height: 50px !important;
+  background-color: #edeeef;
+  color: #212529;
+  border-radius: 50%;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2),
+    inset 0px -4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.minimized-icon-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.icon-image {
+  width: 25px;
+  height: 25px;
+}
+
+.minimized-icon:hover {
+  transform: scale(1.1);
+  background-color: #6366f1;
+}
+
+.toast-item {
+  background-color: #333;
+  color: #edeeef;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  margin-bottom: 0.5rem;
+}
+
+.toast-message {
+  flex: 1; /* take up all available space */
+}
+
+.toast-close-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 0 0.25rem;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.toast-close-btn:hover {
+  color: lightcoral;
+}
+
+@media (max-width: 768px) {
+  .control-btn {
+    padding: 0.2rem 0.5rem;
+    font-size: xx-small;
+  }
+
+  .close-tab:hover {
+    background-color: transparent !important;
+    color: #edeeef;
+  }
+
+  .tab-title {
+    font-size: xx-small;
+  }
+
+  .tabs {
+    padding: 2px 2px;
+  }
+
+  .tab {
+    font-size: xx-small;
+    padding: 0.2rem;
+    width: max(110px, 30%);
+  }
+
+  .minimized-icon {
+    height: 40px !important;
+    width: 40px !important;
+  }
+
+  .minimized-icon-image {
+    width: 20px !important;
+    height: 20px !important;
+  }
+}

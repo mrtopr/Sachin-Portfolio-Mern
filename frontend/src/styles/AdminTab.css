@@ -1,0 +1,149 @@
+.admin-tab {
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.admin-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.admin-login-form {
+  background-color: #1a1d23;
+  padding: 30px;
+  border-radius: 12px;
+  width: 400px;
+  box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2);
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.login-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: none;
+  background-color: #2c3037;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.login-input:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #007bff, #0056b3);
+  color: #ffffff;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 123, 255, 0.6);
+}
+
+.login-btn:active {
+  transform: translateY(1px);
+}
+
+.danger {
+  color: #ff4d4f;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.remember-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.remember-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .remember-slider {
+  background-color: #2196f3;
+}
+
+input:checked + .remember-slider:before {
+  transform: translateX(24px);
+}
+
+@media (max-width: 480px) {
+  .admin-login-form {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .login-title {
+    font-size: 1.5rem;
+  }
+}

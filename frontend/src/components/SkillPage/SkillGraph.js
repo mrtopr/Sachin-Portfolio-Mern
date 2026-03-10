@@ -1,0 +1,272 @@
+import React, { useState, useEffect, useRef } from "react";
+import Carousel from "react-multi-carousel";
+import "../../styles/SkillGraph.css";
+import { motion } from "framer-motion";
+import LeftArrow from "../../assets/img/icons/arrow1.svg";
+import RightArrow from "../../assets/img/icons/arrow2.svg";
+import { zoomIn } from "../../services/variants";
+import { Radar } from "react-chartjs-2";
+import "react-multi-carousel/lib/styles.css";
+import {
+  Chart as ChartJS,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+ChartJS.register(
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend,
+);
+
+const CustomLeftArrow = ({ onClick }) => (
+  <button className="custom-arrow custom-left-arrow" onClick={onClick}>
+    <img src={LeftArrow} alt="Left Arrow" />
+  </button>
+);
+
+const CustomRightArrow = ({ onClick }) => (
+  <button className="custom-arrow custom-right-arrow" onClick={onClick}>
+    <img src={RightArrow} alt="Right Arrow" />
+  </button>
+);
+
+const responsive = {
+  superLargeDesktop: { breakpoint: { max: 4000, min: 992 }, items: 1 },
+  desktop: { breakpoint: { max: 992, min: 768 }, items: 1 },
+  tablet: { breakpoint: { max: 768, min: 576 }, items: 1 },
+  mobile: { breakpoint: { max: 576, min: 0 }, items: 1 },
+};
+
+/** Map carousel clone index to our logical slide index (matches react-multi-carousel clone layout) */
+function cloneIndexToOriginal(currentSlide, childrenLength, slidesToShow) {
+  if (childrenLength <= 0) return 0;
+  if (childrenLength <= 2 * slidesToShow) return currentSlide % childrenLength;
+  const firstBeginningOfClones = childrenLength - 2 * slidesToShow;
+  const firstEndOfClones = childrenLength - firstBeginningOfClones;
+  const secondBeginningOfClones = childrenLength + firstEndOfClones;
+  const secondEndOfClones =
+    secondBeginningOfClones + Math.min(2 * slidesToShow, childrenLength);
+  if (currentSlide < firstEndOfClones)
+    return firstBeginningOfClones + currentSlide;
+  if (
+    currentSlide >= secondBeginningOfClones &&
+    currentSlide < secondEndOfClones
+  )
+    return currentSlide - secondBeginningOfClones;
+  if (
+    currentSlide >= firstEndOfClones &&
+    currentSlide < secondBeginningOfClones
+  )
+    return currentSlide - firstEndOfClones;
+  return currentSlide % childrenLength;
+}
+
+const SkillGraph = ({ givenData, isBatterySavingOn }) => {
+  const numericScores = givenData.Scores.map((score) => Number(score) || 0);
+  const averageScore =
+    numericScores.reduce((sum, score) => sum + score, 0) / numericScores.length;
+
+  const data = {
+    labels: givenData.Labels,
+    datasets: [
+      {
+        label: givenData.skillTitle,
+        data: numericScores,
+        backgroundColor: "rgba(252, 188, 29, 0.2)",
+        borderColor: "#6cbcfc",
+        borderWidth: 2,
+        pointBackgroundColor: "#6cbcfc",
+        pointBorderColor: "#edeeef",
+        pointHoverBackgroundColor: "#edeeef",
+        pointHoverBorderColor: "#6cbcfc",
+        pointRadius: 4,
+        pointHoverRadius: 8,
+        hoverOffset: 10,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      r: {
+        min: 4,
+        max: 5,
+        ticks: { stepSize: 0.1, color: "#6cbcfc", display: false },
+        angleLines: {
+          color: "#edeeef",
+          lineWidth: 0.5,
+        },
+        grid: {
+          color: "rgba(237, 238, 239, 0.3)",
+          circular: true, // Add a circular grid effect
+        },
+        pointLabels: {
+          color: "#edeeef",
+          font: {
+            weight: 400,
+            size: 10,
+            family: "'Montserrat', sans-serif",
+          },
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        callbacks: {
+          label: (context) => `Score: ${context.raw}`,
+        },
+        backgroundColor: "#212529",
+        titleColor: "#6cbcfc",
+        bodyColor: "#edeeef",
+        borderColor: "#6cbcfc",
+        borderWidth: 3,
+        padding: 10,
+      },
+      customAverage: {
+        id: "customAverage",
+        beforeDraw(chart) {
+          const { ctx, chartArea } = chart;
+          const x = chartArea.right - 30;
+          const y = chartArea.top + 10;
+
+          ctx.save();
+          ctx.font = `10px 'Montserrat', sans-serif`;
+          ctx.fillStyle = "#edeeef";
+          ctx.textAlign = "center";
+          ctx.fillText(`Avg. ${averageScore.toFixed(2)}`, x, y);
+          ctx.restore();
+        },
+      },
+      filler: {
+        propagate: true, // Smooth fill effect for the dataset
+      },
+    },
+    animation: {
+      duration: 400,
+      easing: "easeOutQuart",
+    },
+    hover: {
+      animationDuration: 300,
+    },
+  };
+
+  return (
+    <motion.div
+      className="skill-image"
+      initial={isBatterySavingOn ? {} : { opacity: 0, scale: 0.98 }}
+      animate={isBatterySavingOn ? {} : { opacity: 1, scale: 1 }}
+      transition={isBatterySavingOn ? {} : { duration: 0.35, ease: "easeOut" }}
+    >
+      <Radar
+        data={data}
+        options={options}
+        plugins={[options.plugins.customAverage]}
+      />
+    </motion.div>
+  );
+};
+
+const SkillGraphCarousel = ({ skills, isBatterySavingOn }) => {
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const mountedRef = useRef(true);
+  const n = skills.length;
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
+  const syncSlideIndex = (currentSlide, slidesToShow = 1) => {
+    try {
+      if (!n || !mountedRef.current) return;
+      setCurrentSlideIndex(cloneIndexToOriginal(currentSlide, n, slidesToShow));
+    } catch (e) {
+      if (process.env.NODE_ENV !== "production")
+        console.warn("[SkillGraphCarousel syncSlideIndex]", e);
+    }
+  };
+
+  useEffect(() => {
+    let debounceTimer = null;
+    const RESIZE_DEBOUNCE_MS = 150;
+    const handleResize = () => {
+      if (debounceTimer) clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        debounceTimer = null;
+        if (mountedRef.current) setScreenWidth(window.innerWidth);
+      }, RESIZE_DEBOUNCE_MS);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      if (debounceTimer) clearTimeout(debounceTimer);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return (
+    <Carousel
+      key={`skill-graph-${screenWidth}`}
+      responsive={responsive}
+      infinite
+      className="skill-slider"
+      minimumTouchDrag={80}
+      pauseOnHover
+      customLeftArrow={<CustomLeftArrow />}
+      customRightArrow={<CustomRightArrow />}
+      beforeChange={(nextSlide, { slidesToShow }) =>
+        syncSlideIndex(nextSlide, slidesToShow)
+      }
+      afterChange={(previousSlide, { currentSlide, slidesToShow }) =>
+        syncSlideIndex(currentSlide, slidesToShow)
+      }
+    >
+      {skills.map((eachSkill, index) => (
+        <motion.div
+          className="item"
+          key={eachSkill.id || eachSkill.skillTitle}
+          variants={isBatterySavingOn ? {} : zoomIn(0)}
+          initial="hidden"
+          whileInView="show"
+          exit="hidden"
+        >
+          {index === currentSlideIndex ? (
+            <>
+              <motion.div
+                className="skill-graph"
+                initial={isBatterySavingOn ? {} : { scale: 1 }}
+                whileHover={isBatterySavingOn ? {} : { scale: 1.01 }}
+              >
+                <SkillGraph
+                  givenData={eachSkill}
+                  isBatterySavingOn={isBatterySavingOn}
+                />
+              </motion.div>
+              <h5 className="skill-title">{eachSkill.skillTitle}</h5>
+              <p className="skill-description">{eachSkill.skillDescription}</p>
+            </>
+          ) : (
+            <div className="skill-graph-placeholder" aria-hidden="true" />
+          )}
+        </motion.div>
+      ))}
+    </Carousel>
+  );
+};
+
+export default SkillGraphCarousel;

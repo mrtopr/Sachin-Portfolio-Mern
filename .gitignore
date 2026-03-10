@@ -1,0 +1,51 @@
+# Node.js modules
+*node_modules/
+*venv/
+
+# Environment files
+.env
+frontend/.env
+backend/.env
+
+# Build output
+frontend/build/
+
+# Logs
+*.log
+logs/
+backend/logs/
+frontend/logs/
+
+# Local databases
+/data/db/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+.idea/
+*.sublime*
+
+# Coverage
+coverage/
+
+# Temporary files
+tmp/
+temp/
+.cache/
+frontend/.cache/
+backend/.cache/
+
+# Production files
+.env.production
+.env.local
+.github
+.cursorrules
+
+# Build artifacts
+.parcel-cache/
+.next/
+.nuxt/
+dist/

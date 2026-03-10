@@ -1,0 +1,129 @@
+.skill-graph {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Placeholder for non-active radar slides: same dimensions, no chart (reduces DOM weight) */
+.skill-graph-placeholder {
+  min-height: 280px;
+  width: 90%;
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+.skill-image {
+  width: 90%;
+  height: auto;
+  border-radius: 16px; /* Rounded corners for a sleek look */
+  display: flex;
+  justify-content: center; /* Centers the content */
+  align-items: center; /* Centers the content */
+  margin: 0 auto; /* Centers the container horizontally */
+  overflow: hidden; /* Ensures no content overflows */
+  padding: 5px;
+  margin: 5px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease; /* Smooth hover animations */
+}
+
+.skill-image:hover {
+  box-shadow:
+    0px 6px 30px rgba(0, 0, 0, 0.7),
+    0px 0px 10px rgba(108, 188, 252, 0.7); /* Stronger glow on hover */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border for the glass effect */
+  box-shadow:
+    0px 4px 20px rgba(0, 0, 0, 0.5),
+    0px 0px 7.5px rgba(108, 188, 252, 0.4);
+}
+
+.skill-title {
+  color: #edeeef;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  margin: 0 auto;
+}
+
+.skill-description {
+  width: 80%;
+  color: #edeeef;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  margin: 0 auto;
+}
+
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.custom-left-arrow {
+  left: 0px; /* Position the left arrow */
+}
+
+.custom-right-arrow {
+  right: 0px; /* Position the right arrow */
+}
+
+.custom-arrow img {
+  width: 24px; /* Adjust arrow size */
+  height: auto;
+}
+
+@media (max-width: 992px) {
+  .skill-title {
+    font-size: 16px;
+  }
+
+  .skill-description {
+    font-size: 12px;
+  }
+
+  .skill-graph {
+    width: 90%;
+  }
+
+  .skill-image {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .skill-title {
+    font-size: 14px;
+  }
+
+  .skill-description {
+    font-size: 10px;
+  }
+
+  .skill-graph {
+    max-height: calc((40dvh - 52px) / 2);
+    max-width: 90%;
+  }
+
+  .skill-image {
+    box-shadow:
+      0px 6px 30px rgba(0, 0, 0, 0.7),
+      0px 0px 10px rgba(108, 188, 252, 0.7); /* Stronger glow on hover */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border for the glass effect */
+    box-shadow:
+      0px 4px 20px rgba(0, 0, 0, 0.5),
+      0px 0px 7.5px rgba(108, 188, 252, 0.4);
+    max-height: calc((40dvh - 52px) / 2);
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 576px) {
+}
