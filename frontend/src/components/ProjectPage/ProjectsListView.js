@@ -570,7 +570,10 @@ function ProjectsListView({
                     <div
                       className="project-image"
                       style={{
-                        backgroundImage: `url(${project.projectImages[0]})`,
+                        backgroundImage:
+                          project.projectImages && project.projectImages[0]
+                            ? `url(${project.projectImages[0]})`
+                            : "linear-gradient(135deg, #1e1f3b 0%, #2d1855 45%, #0f2a3e 100%)",
                       }}
                     ></div>
                   </div>
@@ -616,8 +619,7 @@ function ProjectsListView({
 export default memo(ProjectsListView);
 
 /* -------------------------------------------------------
-   Styled Components for the "Learn More →" Button 
-   (unchanged from your original code)
+   Styled Components for the "Learn More →" Button
 ---------------------------------------------------------*/
 const ButtonPart = styled("span", {
   position: "absolute",
@@ -625,49 +627,44 @@ const ButtonPart = styled("span", {
   left: 0,
   width: "100%",
   height: "100%",
-  borderRadius: 8,
+  borderRadius: 24,
 });
 
 const ButtonShadow = styled(ButtonPart, {
-  background: "hsl(0deg 0% 0% / 0.1)",
+  background: "hsl(0deg 0% 0% / 0.15)",
   transform: "translateY(2px)",
   transition: "transform 250ms ease-out",
 });
 
 const ButtonEdge = styled(ButtonPart, {
-  background: `linear-gradient(
-    to left,
-    hsl(0deg 0% 69%) 0%,
-    hsl(0deg 0% 85%) 8%,
-    hsl(0deg 0% 85%) 92%,
-    hsl(0deg 0% 69%) 100%
-  )`,
+  background: "linear-gradient(to bottom, rgba(99,102,241,0.6) 0%, rgba(67,56,202,0.9) 100%)",
 });
 
 const ButtonLabel = styled("span", {
   fontFamily: "Montserrat",
-  fontSize: "14px",
+  fontSize: "13px",
+  fontWeight: 700,
+  letterSpacing: "0.4px",
   display: "block",
   position: "relative",
-  borderRadius: 5,
-  color: "#212529",
-  padding: "1rem 1.5rem",
-  background: "#f8f9fa",
+  borderRadius: 24,
+  color: "#fff",
+  padding: "0.6rem 1.4rem",
+  background: "linear-gradient(135deg, #6366f1 0%, #818cf8 100%)",
   transform: "translateY(-4px)",
   width: "100%",
   userSelect: "none",
-  transition:
-    "transform 250ms ease-out, background-color 0.3s ease, color 0.3s ease",
+  transition: "transform 250ms ease-out, background 0.25s ease, box-shadow 0.25s ease",
+  boxShadow: "0 4px 14px rgba(99,102,241,0.4)",
   "&:hover": {
-    backgroundColor: "#6366f1",
-    color: "#212529",
-    transform: "scale(1.05)",
+    background: "linear-gradient(135deg, #7c3aed 0%, #6366f1 100%)",
+    boxShadow: "0 6px 20px rgba(99,102,241,0.6)",
   },
 });
 
 const StyledButton = styled("button", {
   border: "none",
-  fontWeight: 600,
+  fontWeight: 700,
   width: "fit-content",
   cursor: "pointer",
   background: "transparent",
@@ -676,8 +673,8 @@ const StyledButton = styled("button", {
   transition: "filter 250ms ease-out",
   "&:hover": {
     filter: "brightness(110%)",
-    [`& ${ButtonLabel}`]: { transform: "translateY(-8px)" },
-    [`& ${ButtonShadow}`]: { transform: "translateY(6px)" },
+    [`& ${ButtonLabel}`]: { transform: "translateY(-6px)" },
+    [`& ${ButtonShadow}`]: { transform: "translateY(5px)" },
   },
   "&:active": {
     [`& ${ButtonLabel}`]: {

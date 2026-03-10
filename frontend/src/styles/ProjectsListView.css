@@ -1,5 +1,4 @@
-/* Container for project cards: occupy full viewport height minus header/title, no separate scrolling */
-
+﻿/* Container for project cards */
 .project-section-title {
   font-family: "Montserrat", "Helvetica Neue";
   font-weight: 700;
@@ -10,16 +9,14 @@
   top: 72px;
 }
 
-/* Projects list container: full width, auto-height to fit all cards */
 .project-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  /* height: calc(100dvh - 52px - <titleHeight> ); -- removed fixed height */
-  overflow: visible; /* allow content to extend naturally */
-  scrollbar-width: none; /* hide scrollbar (no overflow anyway) */
+  overflow: visible;
+  scrollbar-width: none;
   margin-top: 20px;
 }
 .project-container::-webkit-scrollbar {
@@ -28,22 +25,23 @@
 
 .hover-tooltip {
   position: absolute;
-  top: -30px; /* Adjust as necessary */
+  top: -30px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.9rem;
+  background: rgba(99, 102, 241, 0.92);
+  color: #fff;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
   white-space: nowrap;
+  letter-spacing: 0.3px;
+  pointer-events: none;
 }
 
-/* Each project card: sticky positioning for stacking effect */
+/* ===== Project Card ===== */
 .project-card {
   max-width: 1140px;
-  /* scroll-snap-align: center;
-    scroll-snap-stop: always; */
   display: flex;
   position: sticky;
   top: 0px;
@@ -51,139 +49,120 @@
   flex-direction: row;
   width: min(1140px, 95%);
   text-align: left;
-  padding: 0 40px;
-  margin: 20px;
-  /* margin-bottom: 5px !important; */
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-  transition:
-    transform 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out,
-    opacity 0.3s ease-in-out;
+  padding: 0 32px;
+  margin: 16px;
+  background: rgba(16, 20, 28, 0.78) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.55), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Accent glow: cycle through 3 subtle border colors */
 .project-card:nth-child(3n + 1) {
-  background: linear-gradient(
-    rgba(139, 69, 90, 0.5),
-    /* Dark Pink */ rgba(139, 69, 90, 0.5)
-  );
-  background-size: cover;
-  color: #f8f9fa; /* Light text for readability */
+  border-color: rgba(139, 92, 246, 0.25);  /* violet */
+  box-shadow: 0 6px 28px rgba(0,0,0,0.55), 0 0 0 1px rgba(139,92,246,0.12) inset;
 }
-
 .project-card:nth-child(3n + 2) {
-  background: linear-gradient(
-    rgba(54, 79, 107, 0.5),
-    /* Dark Blue */ rgba(54, 79, 107, 0.5)
-  );
-  background-size: cover;
-  color: #f8f9fa; /* Light text for readability */
+  border-color: rgba(99, 102, 241, 0.25);  /* indigo */
+  box-shadow: 0 6px 28px rgba(0,0,0,0.55), 0 0 0 1px rgba(99,102,241,0.12) inset;
 }
-
 .project-card:nth-child(3n) {
-  background: linear-gradient(
-    rgba(97, 89, 38, 0.5),
-    /* Dark Yellow */ rgba(97, 89, 38, 0.5)
-  );
-  background-size: cover;
-  color: #f8f9fa; /* Light text for readability */
+  border-color: rgba(236, 72, 153, 0.2);   /* pink */
+  box-shadow: 0 6px 28px rgba(0,0,0,0.55), 0 0 0 1px rgba(236,72,153,0.1) inset;
 }
 
-/* Enhance shadow on hover */
 .project-card-initial-active {
-  box-shadow: 0 0 0 3px #6366f1;
+  box-shadow: 0 0 0 2px #6366f1 !important;
 }
 
 .project-card:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-  /* z-index: 10000; */
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
 }
 
 .profile-picture-static {
-  /* inherit the container’s size/layout exactly */
   width: 100%;
   height: 100%;
-  /* force no extra transforms on the child */
   transform: none !important;
 }
 
-/* .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-  } */
-
-/* Project card content layout (unchanged)... */
+/* ===== Card Content ===== */
 .project-info {
-  flex: 4; /* Take up two-thirds of the card */
-  padding: 40px 40px 40px 0px;
+  flex: 4;
+  padding: 32px 32px 32px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  color: #edeeef; /* Light text color for contrast */
+  color: #edeeef;
+  gap: 4px;
 }
 
 .project-header {
   font-family: "Montserrat", sans-serif;
-  font-size: clamp(0.75rem, 1.1rem, 1.25vw);
-  color: #edeeef;
+  font-size: clamp(0.72rem, 1rem, 1.1vw);
+  color: #8892a4;
+  font-weight: 500;
+  letter-spacing: 0.2px;
 }
 
 .project-title {
   z-index: 50;
-  inset: 0;
   display: flex;
   align-items: center;
-  background-size: 200% 200%;
-  color: transparent !important;
-  text-align: left;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-image: linear-gradient(
-    to bottom,
-    rgba(252, 188, 29, 1),
-    rgba(237, 238, 239, 0.95)
+    135deg,
+    #a5b4fc 0%,
+    #ffffff 50%,
+    #c4b5fd 100%
   );
-  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
   font-weight: 700;
-  margin: 10px 0;
+  margin: 6px 0;
+  text-decoration: none !important;
+  line-height: 1.2;
 }
 
 .project-tagline {
-  z-index: 50;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1em;
-  font-size: clamp(0.75rem, 1.1rem, 1.25vw);
-  margin: 10px 0;
-  color: #edeeef;
-  font-weight: 500;
+  font-size: clamp(0.78rem, 1rem, 1.1vw);
+  margin: 6px 0;
+  color: #8892a4;
+  font-weight: 400;
   text-align: justify;
-  /* let long words break with hyphens instead of huge gaps */
   hyphens: auto;
-  /* force the last line of each paragraph back to left alignment */
   text-align-last: left;
+  line-height: 1.6;
 }
 
+/* ===== Thumbnail ===== */
 .project-image {
-  margin: 40px 0px;
-  flex: 3; /* Take up half the card */
-  background-size: contain;
+  margin: 32px 0;
+  flex: 3;
+  background-size: cover;
   background-repeat: no-repeat;
-  scroll-behavior: smooth;
   background-position: center;
-  border-radius: 12px; /* Match card's border-radius */
+  border-radius: 14px;
   aspect-ratio: 16 / 9;
+  background-color: rgba(99, 102, 241, 0.08);
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: transform 0.4s ease;
 }
 
+.project-card:hover .project-image {
+  transform: scale(1.02);
+}
+
+/* ===== Learn More Button ===== */
 .learn-button-motioned {
   height: auto;
   width: fit-content;
-  margin: 5px 0;
+  margin: 10px 0 2px;
 }
 
 @media (max-width: 992px) {
@@ -191,20 +170,17 @@
     font-size: 2rem;
     margin: 10px auto;
   }
-
   .project-card {
     width: 95%;
-    padding: 0 30px;
+    padding: 0 24px;
   }
-
   .project-info {
-    padding: 30px 30px 30px 0px;
+    padding: 28px 24px 28px 0;
     flex: 1;
   }
-
   .project-image {
-    flex: 1; /* Prevent flex shrink issues */
-    margin: 30px 0;
+    flex: 1;
+    margin: 26px 0;
   }
 }
 
@@ -214,32 +190,30 @@
     max-width: 540px;
     padding: 0 20px;
   }
-
   .project-info {
     padding: 20px 0;
     flex: 1;
   }
-
   .project-image {
-    flex: none; /* Prevent flex shrink issues */
-    margin: 20px 0 20px 0; /* Add space below the image */
-    width: 100%; /* Make image take full width of parent */
-    aspect-ratio: 16 / 9; /* Consistent aspect ratio */
-    height: auto; /* Fixed height to ensure visibility */
+    flex: none;
+    margin: 20px 0;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
   }
 }
 
 @media (max-width: 576px) {
   .project-card {
-    width: 90%;
-    padding: 0 20px;
+    width: 92%;
+    padding: 0 16px;
   }
   .project-image {
-    flex: none; /* Prevent flex shrink issues */
+    flex: none;
     align-self: center;
-    width: 100%; /* Make image take full width of parent */
-    height: auto; /* Let height adjust dynamically */
+    width: 100%;
+    height: auto;
     aspect-ratio: 16 / 9;
-    margin: 20px 0 0;
+    margin: 16px 0 0;
   }
 }
