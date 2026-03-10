@@ -17,6 +17,8 @@ app.register(require("@fastify/cors"), {
     "https://www.heysachin.me",
     "http://localhost:3000",
     "http://localhost:3001",
+    "https://portfolio-sage-alpha-76.vercel.app",
+    "https://sachin-portfolio-mern.vercel.app"
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
