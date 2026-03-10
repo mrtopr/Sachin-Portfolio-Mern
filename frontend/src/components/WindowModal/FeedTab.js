@@ -183,7 +183,10 @@ const FeedTab = () => {
 
                   {feed.feedCategory && feed.feedCategory.length > 0 && (
                     <div className="feed-item-categories">
-                      {feed.feedCategory.map((cat, idx) => (
+                        {(Array.isArray(feed.feedCategory)
+                          ? feed.feedCategory
+                          : [feed.feedCategory]
+                        ).map((cat, idx) => (
                         <span key={idx} className="feed-category">
                           {cat}
                         </span>
