@@ -116,25 +116,19 @@ const FeedTab = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15 + 0.15 * id, type: "spring", stiffness: 80, damping: 18 }}
                 >
-                  {/* Cover Image */}
-                  <div className="feed-item-cover">
+                  {/* Thumbnail */}
+                  <div className="feed-thumbnail">
                     {imgURL ? (
                       <img
                         src={imgURL}
                         alt={feed.feedTitle}
-                        className="feed-cover-img"
+                        className="feed-thumb-img"
                       />
                     ) : (
-                      <div className="feed-cover-placeholder" />
-                    )}
-                    <div className="feed-cover-overlay" />
-                    {categories.length > 0 && (
-                      <div className="feed-item-categories">
-                        {categories.map((cat, idx) => (
-                          <span key={idx} className="feed-category">
-                            {cat}
-                          </span>
-                        ))}
+                      <div className="feed-thumb-placeholder">
+                        <span className="feed-thumb-initial">
+                          {feed.feedTitle ? feed.feedTitle.charAt(0).toUpperCase() : "F"}
+                        </span>
                       </div>
                     )}
                   </div>
@@ -157,6 +151,17 @@ const FeedTab = () => {
                         }
                       />
                     </div>
+
+                    {/* Categories */}
+                    {categories.length > 0 && (
+                      <div className="feed-item-categories">
+                        {categories.map((cat, idx) => (
+                          <span key={idx} className="feed-category">
+                            {cat}
+                          </span>
+                        ))}
+                      </div>
+                    )}
 
                     {/* Title */}
                     <h2 className="feed-item-title">{feed.feedTitle}</h2>
@@ -218,9 +223,7 @@ const FeedTab = () => {
                       </div>
                       <div className="feed-footer-right">
                         {feed.likesCount > 0 && (
-                          <span className="feed-likes">
-                            ♥ {feed.likesCount}
-                          </span>
+                          <span className="feed-likes">♥ {feed.likesCount}</span>
                         )}
                         <span className="feed-timestamp">
                           {feed.feedCreatedAt &&
