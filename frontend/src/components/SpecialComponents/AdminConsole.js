@@ -325,15 +325,23 @@ const AdminConsole = ({ logout }) => {
             Scores: [0],
           };
           break;
-          case "FeedTable":
-            template = {
-              feedTitle: "",
-              feedCategory: "",
-              feedContent: [],
-              feedImageURL: "",
-              feedLinks: [],
-            };
-            break;
+        case "FeedTable":
+          template = {
+            feedTitle: "",
+            feedCategory: "",
+            feedContent: [],
+            feedImageURL: "",
+            feedLinks: [],
+          };
+          break;
+        default:
+          template = {};
+      }
+    }
+    return template;
+  };
+
+  const handleAddNew = () => {
     if (!selectedTable) return;
     setExpandedItem(null);
     const newItem = initializeNewItemData();
