@@ -450,7 +450,7 @@ const AIChatBot = ({
             }}
           >
             <animated.img
-              src={`${process.env.PUBLIC_URL}/system-user.webp`}
+              src={`${process.env.PUBLIC_URL}/Sachin-Profile-Photo.webp`}
               alt="Profile"
               className={` img-responsive img-circle${frames[frameIndex]}`}
               draggable="false"
@@ -472,7 +472,7 @@ const AIChatBot = ({
             />
           </motion.div>
           {/* <img
-            src={`${process.env.PUBLIC_URL}/system-user.webp`}
+            src={`${process.env.PUBLIC_URL}/Sachin-Profile-Photo.webp`}
             alt="AI"
             className="avatar intro-avatar"
           /> */}
