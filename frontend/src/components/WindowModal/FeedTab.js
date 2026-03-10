@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { styled } from "@stitches/react";
 import { motion } from "framer-motion";
-import { animated } from "@react-spring/web";
 import LikeButton from "../SpecialComponents/LikeButton";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import axios from "axios";
 import "../../styles/FeedTab.css";
 
@@ -211,13 +211,7 @@ const FeedTab = () => {
                             whileTap={{ scale: 0.95 }}
                           >
                             Visit Link
-                            <animated.img
-                              src={require("../../assets/img/icons/links.png")}
-                              alt="link"
-                              className="feed-visit-icon"
-                              draggable="false"
-                              loading="eager"
-                            />
+                            <FaExternalLinkAlt className="feed-visit-icon" />
                           </motion.a>
                         ))}
                       </div>

@@ -174,10 +174,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  object-position: center;
-  object-fit: cover;
-  width: auto;
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+  color: #edeeef;
+  transition: color 0.2s, transform 0.3s;
 }
 
 .project-window-paragraphs {

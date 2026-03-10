@@ -1,10 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "../../styles/ProjectTab.css";
-import github from "../../assets/img/icons/github.png";
-import youtube from "../../assets/img/icons/youtube.png";
-import devpost from "../../assets/img/icons/devpost.png";
-import web from "../../assets/img/icons/web.png";
+import { FaGithub, FaYoutube, FaCode, FaGlobe } from "react-icons/fa";
 import ImagesCarousel from "./ImageCarousel"; // Import ImageCarousel component
 
 const ExperienceTab = ({ data, isBatterySavingOn }) => {
@@ -12,7 +9,7 @@ const ExperienceTab = ({ data, isBatterySavingOn }) => {
     if (!urls) return null; // Check if URLs exist
 
     return Object.entries(urls).map(([key, value]) => {
-      const iconName = getIconForLink(value);
+      const IconComponent = getIconForLink(value);
       return (
         <motion.a
           key={key}
@@ -33,44 +30,17 @@ const ExperienceTab = ({ data, isBatterySavingOn }) => {
           }
           viewport={{ once: true }}
         >
-          <motion.img
-            src={`${iconName}`}
-            alt={`${iconName} logo`}
-            className="project-window-logo"
-            whileHover={
-              isBatterySavingOn
-                ? {}
-                : {
-                    scale: 1.01,
-                    rotate: 360,
-                  }
-            }
-            whileTap={
-              isBatterySavingOn
-                ? {}
-                : {
-                    scale: 0.99,
-                    rotate: 0,
-                  }
-            }
-            transition={
-              isBatterySavingOn
-                ? {}
-                : {
-                    type: "ease",
-                  }
-            }
-          />
+          <IconComponent className="project-window-logo" />
         </motion.a>
       );
     });
   };
 
   const getIconForLink = (link) => {
-    if (link.includes("github")) return github;
-    if (link.includes("youtube") || link.includes("youtu")) return youtube;
-    if (link.includes("devpost")) return devpost;
-    return web;
+    if (link.includes("github")) return FaGithub;
+    if (link.includes("youtube") || link.includes("youtu")) return FaYoutube;
+    if (link.includes("devpost")) return FaCode;
+    return FaGlobe;
   };
 
   return (

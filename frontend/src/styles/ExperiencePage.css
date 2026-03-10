@@ -209,9 +209,23 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  background: transparent;
-  border: none;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  color: #edeeef;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.custom-arrow:hover {
+  background: #6366f1;
+  color: #fff;
 }
 
 .custom-left-arrow {

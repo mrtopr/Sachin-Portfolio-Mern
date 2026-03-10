@@ -76,8 +76,13 @@
 }
 
 .custom-arrow img {
-  width: 24px; /* Adjust arrow size */
-  height: auto;
+  display: none; /* replaced by react-icon */
+}
+
+.custom-arrow svg {
+  width: 24px;
+  height: 24px;
+  color: #edeeef;
 }
 
 @media (max-width: 992px) {

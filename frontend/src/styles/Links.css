@@ -103,11 +103,13 @@
   transform: scale(1.1);
 }
 
-/* Image inside the Link Item */
+/* Icon inside buttons (react-icons SVG) */
 .icon-img {
-  width: 50%;
-  height: 50%;
-  object-fit: contain;
+  width: 1.15rem;
+  height: 1.15rem;
+  font-size: 1.15rem;
+  display: block;
+  flex-shrink: 0;
 }
 
 /* Label that appears on hover */

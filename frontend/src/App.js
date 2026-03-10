@@ -7,7 +7,7 @@ import React, {
   lazy,
 } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { animated } from "@react-spring/web";
+import { FaRobot } from "react-icons/fa";
 import axios from "axios";
 import { AppLoad } from "./services/variants";
 import { fetchProjectByLink } from "./services/projectService";
@@ -712,12 +712,9 @@ function App({
                 batterySavingForBehavior ? {} : { delay: 0, type: "spring" }
               }
             >
-              <animated.img
-                src={require("./assets/img/icons/aichat.png")}
-                alt="AI Chat Bot"
+              <FaRobot
                 className="icon-img"
-                draggable="false"
-                loading="eager"
+                style={{ fontSize: "1.4rem", color: "#edeeef" }}
               />
             </motion.div>
           </div>

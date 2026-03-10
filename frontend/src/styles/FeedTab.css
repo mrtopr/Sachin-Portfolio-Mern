@@ -234,9 +234,9 @@
 }
 
 .feed-visit-icon {
-  width: 12px;
-  height: 12px;
-  opacity: 0.9;
+  font-size: 0.72rem;
+  display: block;
+  flex-shrink: 0;
 }
 
 /* ===== Likes & Timestamp ===== */

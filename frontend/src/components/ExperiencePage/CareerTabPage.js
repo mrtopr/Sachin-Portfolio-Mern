@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { zoomIn } from "../../services/variants";
-import LeftArrow from "../../assets/img/icons/arrow1.svg";
-import RightArrow from "../../assets/img/icons/arrow2.svg";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import LikeButton from "../SpecialComponents/LikeButton";
 import { fetchExperiences } from "../../services/experienceService";
 import { styled } from "@stitches/react";
@@ -49,7 +48,7 @@ const scrollToSection = (id) => {
 };
 
 // ---------------- Custom Arrow Component ----------------
-const CustomArrow = ({ direction, onClick, imgSrc, label }) => {
+const CustomArrow = ({ direction, onClick, label }) => {
   const handleClick = () => {
     scrollToSection("experience");
     if (onClick) onClick();
@@ -60,7 +59,7 @@ const CustomArrow = ({ direction, onClick, imgSrc, label }) => {
       onClick={handleClick}
       aria-label={label}
     >
-      <img src={imgSrc} alt={`${label} Arrow`} />
+      {direction === "left" ? <FaChevronLeft /> : <FaChevronRight />}
     </button>
   );
 };
@@ -283,13 +282,11 @@ const CareerTabPage = ({
           <CustomArrow
             direction="left"
             onClick={prevSlide}
-            imgSrc={LeftArrow}
             label="Previous"
           />
           <CustomArrow
             direction="right"
             onClick={nextSlide}
-            imgSrc={RightArrow}
             label="Next"
           />
         </div>

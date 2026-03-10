@@ -1,34 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-// import { zoomIn } from "../../services/variants";
+import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope, FaLink } from "react-icons/fa";
 import "../../styles/Links.css";
-import { animated } from "@react-spring/web";
 
 const Links = ({ isBatterySavingOn, isWindowModalVisible }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 
   const linksData = [
-    {
-      href: "https://github.com/mrtopr",
-      icon: require("../../assets/img/icons/github.png"),
-      label: "GitHub",
-    },
-    {
-      href: "https://www.linkedin.com/in/isachin-kumar",
-      icon: require("../../assets/img/icons/linkedin.png"),
-      label: "LinkedIn",
-    },
-    {
-      href: "https://www.instagram.com/mrtopr/",
-      icon: require("../../assets/img/icons/instagram.png"),
-      label: "Instagram",
-    },
-    {
-      href: "mailto:isachinkr02@gmail.com",
-      icon: require("../../assets/img/icons/email.png"),
-      label: "Email",
-    },
+    { href: "https://github.com/mrtopr",                  Icon: FaGithub,    label: "GitHub"    },
+    { href: "https://www.linkedin.com/in/isachin-kumar",  Icon: FaLinkedin,  label: "LinkedIn"  },
+    { href: "https://www.instagram.com/mrtopr/",          Icon: FaInstagram, label: "Instagram" },
+    { href: "mailto:isachinkr02@gmail.com",               Icon: FaEnvelope,  label: "Email"     },
   ];
 
   const handleOutsideClick = (e) => {
@@ -100,13 +83,7 @@ const Links = ({ isBatterySavingOn, isWindowModalVisible }) => {
         whileTap={isBatterySavingOn ? {} : { scale: 0.9 }}
         transition={isBatterySavingOn ? {} : { delay: 0, type: "spring" }}
       >
-        <animated.img
-          src={require("../../assets/img/icons/links.png")}
-          alt="Links"
-          className="icon-img"
-          draggable="false"
-          loading="eager"
-        />
+        <FaLink className="icon-img" />
       </motion.div>
 
       {/* Child Links */}
@@ -132,13 +109,7 @@ const Links = ({ isBatterySavingOn, isWindowModalVisible }) => {
                 whileTap={isBatterySavingOn ? {} : { scale: 0.9 }}
                 transition={isBatterySavingOn ? {} : { duration: 0.5 }}
               >
-                <animated.img
-                  draggable="false"
-                  src={link.icon}
-                  alt={link.label}
-                  className="icon-img"
-                  loading="eager"
-                />
+                <link.Icon className="icon-img" />
                 <motion.span
                   className="link-label"
                   initial={isBatterySavingOn ? {} : { opacity: 0, x: -20 }}

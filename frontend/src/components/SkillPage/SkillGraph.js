@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Carousel from "react-multi-carousel";
 import "../../styles/SkillGraph.css";
 import { motion } from "framer-motion";
-import LeftArrow from "../../assets/img/icons/arrow1.svg";
-import RightArrow from "../../assets/img/icons/arrow2.svg";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { zoomIn } from "../../services/variants";
 import { Radar } from "react-chartjs-2";
 import "react-multi-carousel/lib/styles.css";
@@ -28,13 +27,13 @@ ChartJS.register(
 
 const CustomLeftArrow = ({ onClick }) => (
   <button className="custom-arrow custom-left-arrow" onClick={onClick}>
-    <img src={LeftArrow} alt="Left Arrow" />
+    <FaChevronLeft />
   </button>
 );
 
 const CustomRightArrow = ({ onClick }) => (
   <button className="custom-arrow custom-right-arrow" onClick={onClick}>
-    <img src={RightArrow} alt="Right Arrow" />
+    <FaChevronRight />
   </button>
 );
 

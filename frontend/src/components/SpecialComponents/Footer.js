@@ -1,29 +1,14 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa";
 import "../../styles/Footer.css";
 
 const Footer = ({ isBatterySavingOn, addTab }) => {
   const linksData = [
-    {
-      href: "https://github.com/mrtopr",
-      icon: require("../../assets/img/icons/github.png"),
-      label: "GitHub",
-    },
-    {
-      href: "https://www.linkedin.com/in/isachin-kumar",
-      icon: require("../../assets/img/icons/linkedin.png"),
-      label: "LinkedIn",
-    },
-    {
-      href: "https://www.instagram.com/mrtopr/",
-      icon: require("../../assets/img/icons/instagram.png"),
-      label: "Instagram",
-    },
-    {
-      href: "mailto:isachinkr02@gmail.com",
-      icon: require("../../assets/img/icons/email.png"),
-      label: "Email",
-    },
+    { href: "https://github.com/mrtopr",                  Icon: FaGithub,    label: "GitHub"    },
+    { href: "https://www.linkedin.com/in/isachin-kumar",  Icon: FaLinkedin,  label: "LinkedIn"  },
+    { href: "https://www.instagram.com/mrtopr/",          Icon: FaInstagram, label: "Instagram" },
+    { href: "mailto:isachinkr02@gmail.com",               Icon: FaEnvelope,  label: "Email"     },
   ];
 
   const scrollToSection = (id) => {
@@ -138,12 +123,7 @@ const Footer = ({ isBatterySavingOn, addTab }) => {
             whileTap={isBatterySavingOn ? {} : { scale: 0.99, rotate: 0 }}
             transition={isBatterySavingOn ? {} : { delay: 0, type: "spring" }}
           >
-            <motion.img
-              src={link.icon}
-              alt={link.label}
-              className="footer-icon"
-              drag="false"
-            />
+            <link.Icon className="footer-icon" />
           </motion.a>
         ))}
       </motion.div>
