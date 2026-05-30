@@ -10,7 +10,7 @@ const Links = ({ isBatterySavingOn, isWindowModalVisible }) => {
   const linksData = [
     { href: "https://github.com/mrtopr",                  Icon: FaGithub,    label: "GitHub"    },
     { href: "https://www.linkedin.com/in/isachin-kumar",  Icon: FaLinkedin,  label: "LinkedIn"  },
-    { href: "https://www.instagram.com/mrtopr/",          Icon: FaInstagram, label: "Instagram" },
+    { href: "https://www.instagram.com/isachin_bhardwaj/", Icon: FaInstagram, label: "Instagram" },
     { href: "mailto:isachinkr02@gmail.com",               Icon: FaEnvelope,  label: "Email"     },
   ];
 
